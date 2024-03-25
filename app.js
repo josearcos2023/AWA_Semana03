@@ -2,24 +2,32 @@ const express = require('express');
 const port = 3500;
 const app = express();
 
-app.get('/products',(req,res)=>{
-    res.send('lista de productos')
+app.get('/',(req,res)=>{
+    res.send('Hello world')
 })
 
-app.post('/products', (req,res)=>{
-    res.send('creando productos')
+app.get('/myfile', (req,res)=>{
+    res.sendFile('./arquitectura.png'),{
+        root: __dirname
+    }
 })
 
-app.put('/products',(req,res)=>{
-    res.send('actualizando productos')
+app.get('/user',(req,res)=>{
+    res.json({ 
+        nombre:"José",
+        apellido:"Arcos",
+        edad:42,
+        points: [1, 2, 3],
+        address: {
+            ciudad: "Lima - Peru",
+            distrito: "San Martin de Porres",
+            calle: "Jr. Ica"
+        }       
+    })
 })
 
-app.delete('/products',(req,res)=>{
-    res.send('eliminando productos')
-})
-
-app.patch('/products',(req,res)=>{
-    res.send('actualizando una parte del producto')
+app.get('/isAlive',(req,res)=>{
+    res.sendStatus(204)
 })
 
 app.listen(port, () => {
