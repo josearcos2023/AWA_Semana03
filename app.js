@@ -2,9 +2,9 @@ const express = require('express');
 const port = 3500;
 const app = express();
 
-app.arguments(express.text())
-app.arguments(express.json())
-app.arguments(express.urlencoded({extended: false}))
+app.use(express.text())
+app.use(express.json())
+app.use(express.urlencoded({extended: false}))
 
 app.post('/user',(req,res)=>{
     console.log(req.body)
